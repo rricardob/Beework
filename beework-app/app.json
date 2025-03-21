@@ -9,7 +9,8 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.kenwhiston.beeworkapp"
     },
     "android": {
       "adaptiveIcon": {
@@ -29,8 +30,7 @@
         "expo-splash-screen",
         {
           "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
+          "resizeMode": "cover",
           "backgroundColor": "#ffffff"
         }
       ]
