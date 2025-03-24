@@ -30,7 +30,8 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
-        <Stack.Screen name="index" options={{ title: 'Welcome' }} />
+        <Stack.Screen name="index" options={{ title: 'Welcome' }, {headerShown: false}} />
+        <Stack.Screen name="new-account-step-one" options={{ title: 'New Account' }, {headerShown: false}} />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

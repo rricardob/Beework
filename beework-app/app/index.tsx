@@ -1,7 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const WelcomeScreen = () => {
+
+  const navigation = useNavigation();
+
+  const newAccountButton = () => {
+    navigation.navigate('new-account-step-one');
+  };
+
   return (
     <View style={styles.container}>
       {/* Logo */}
@@ -27,7 +35,7 @@ const WelcomeScreen = () => {
       <Text style={styles.separador}>o</Text>
 
       {/* Botón de Crear Cuenta */}
-      <TouchableOpacity style={styles.botonCrearCuenta}>
+      <TouchableOpacity style={styles.botonCrearCuenta} onPress={newAccountButton}>
         <Text style={styles.textoBotonCrearCuenta}>Crea una Cuenta</Text>
       </TouchableOpacity>
 
