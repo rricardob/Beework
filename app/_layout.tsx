@@ -24,11 +24,7 @@ const RootLayout = () => {
   if (!fontsLoaded && !error) return null;
 
 
-  return (
-    <View>
-      <Text className='text-2xl font-poppins-thin'>RootLayout</Text>
-    </View>
-  )
+  return <Slot />
 }
 
 export default RootLayout
