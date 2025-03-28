@@ -46,6 +46,13 @@ const StackLayout = () => {
         }}
       />
 
+      <Stack.Screen
+        name='codeVerification/index'
+        options={{
+          title: '',
+        }}
+      />
+
     </Stack>
   )
 }
