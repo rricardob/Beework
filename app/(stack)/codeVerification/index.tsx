@@ -61,7 +61,7 @@ const CodeVerificationScreen = () => {
           className={`w-full py-3 rounded-lg items-center ${isCodeComplete ? "bg-black" : "bg-gray-400"
             }`}
           disabled={!isCodeComplete}
-          onPress={() => router.push("/codeVerification")}
+          onPress={() => router.push("/createPassword")}
         >
           <Text className="text-white font-semibold text-lg">Next</Text>
         </Pressable>
