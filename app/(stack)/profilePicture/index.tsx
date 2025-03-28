@@ -60,7 +60,7 @@ const ProfilePictureScreen = () => {
       {/* Botón Next siempre habilitado */}
       <Pressable
         className="w-full py-3 rounded-lg items-center bg-black"
-        onPress={() => router.push("/profilePicture")}
+        onPress={() => router.push("/description")}
       >
         <Text className="text-white font-semibold text-lg">Next</Text>
       </Pressable>
