@@ -29,7 +29,7 @@ const WelcomeScreen = () => {
 
       <Pressable
         className="mt-8 bg-gray-200 rounded-xl px-8 py-4 shadow-lg shadow-black w-full"
-        onPress={() => router.push('/welcome')}
+        onPress={() => router.push('/(stack)/findYourTwitterAccount')}
       >
         <Text className="font-poppins-regular text-black text-[16px] text-center">Continuar con Google</Text>
       </Pressable>
