@@ -39,6 +39,13 @@ const StackLayout = () => {
         }}
       />
 
+      <Stack.Screen
+        name='dataConfirmation/index'
+        options={{
+          title: '',
+        }}
+      />
+
     </Stack>
   )
 }
