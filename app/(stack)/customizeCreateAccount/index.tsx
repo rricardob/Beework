@@ -62,7 +62,7 @@ const CustomizeCreateAccountScreen = () => {
       <Pressable
         className="w-full bg-black py-3 rounded-lg items-center mt-auto"
         onPress={() => {
-          router.push("/customizeCreateAccount");
+          router.push("/(stack)/dataConfirmation");
           console.log({ receiveEmails, allowDiscovery });
         }}
       >
