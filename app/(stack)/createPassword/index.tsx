@@ -54,7 +54,7 @@ const CreatePasswordScreen = () => {
         <Pressable
           className={`w-full py-3 rounded-lg items-center ${isPasswordValid ? "bg-black" : "bg-gray-400"}`}
           disabled={!isPasswordValid}
-          onPress={() => router.push("/createPassword")}
+          onPress={() => router.push("/profilePicture")}
         >
           <Text className="text-white font-semibold text-lg">Next</Text>
         </Pressable>

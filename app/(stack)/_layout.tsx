@@ -60,6 +60,13 @@ const StackLayout = () => {
         }}
       />
 
+      <Stack.Screen
+        name='profilePicture/index'
+        options={{
+          title: '',
+        }}
+      />
+
     </Stack>
   )
 }
