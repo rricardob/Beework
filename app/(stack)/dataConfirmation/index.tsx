@@ -49,14 +49,14 @@ const DataConfirmationScreen = () => {
         <Text className="text-sm text-black-500 mt-10 font-poppins-regular">
           By signing up, you agree to our Terms, Privacy Policy and Cookie use.
           App may use your contact information including your email address and
-          phone number for purposes outlined in our Privacy Policy. Learn more...
+          phone number for purposes outlined in our Privacy Policy. Learn more.
         </Text>
       </View>
 
       {/* Botón Sign Up */}
       <Pressable
         className="w-full bg-black py-3 rounded-lg items-center mt-auto"
-        onPress={() => router.push("/dataConfirmation")}
+        onPress={() => router.push("/codeVerification")}
       >
         <Text className="text-white font-semibold text-lg">Sign up</Text>
       </Pressable>
