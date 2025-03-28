@@ -114,7 +114,7 @@ const CreateAccountScreen = () => {
           className={`py-3 px-6 rounded-lg text-base ${isFormValid() ? "bg-black" : "bg-gray-400"
             }`}
           onPress={() => {
-            router.push("/createAccount");
+            router.push("/(stack)/customizeCreateAccount");
             console.log(formData);
           }}
           disabled={!isFormValid()}

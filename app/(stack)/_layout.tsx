@@ -32,6 +32,13 @@ const StackLayout = () => {
         }}
       />
 
+      <Stack.Screen
+        name='customizeCreateAccount/index'
+        options={{
+          title: '',
+        }}
+      />
+
     </Stack>
   )
 }
