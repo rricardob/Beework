@@ -50,16 +50,16 @@ const WelcomeScreen = () => {
       <Text className='font-poppins-regular mt-6'>Al registrarte, aceptas nuestros Términos, Política de privacidad y Uso de cookies</Text>
 
 
-      <View className='flex-row mt-8'>
+      <View className='flex-row mt-8 items-center'>
         <Text className='font-poppins-regular'>¿Ya tienes una cuenta?
         </Text>
 
-        <Link
-          href='/welcome'
-          className='ml-2 text-blue-600'
-        >
-          Inicia sesión
-        </Link>
+        <Pressable
+        onPress={() => router.push('/(stack)/login')}
+      >
+        <Text className="fml-2 text-blue-600 ml-2">Inicia sesión</Text>
+      </Pressable>
+
       </View>
 
     </SafeAreaView>
