@@ -41,7 +41,7 @@ const WelcomeScreen = () => {
 
       <Pressable
         className=" bg-black rounded-xl px-8 py-4 shadow-lg shadow-black w-full"
-        onPress={() => router.push('/(stack)/welcome')}
+        onPress={() => router.push('/(stack)/createAccount')}
       >
         <Text className="font-poppins-regular text-white text-[16px] text-center">Crea una Cuenta</Text>
       </Pressable>
