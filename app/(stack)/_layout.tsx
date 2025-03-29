@@ -92,13 +92,8 @@ const StackLayout = () => {
         }}
       />
 
-
-
-
-
-
       <Stack.Screen
-        name='description/index'
+        name='userName/index'
         options={{
           title: '',
         }}
