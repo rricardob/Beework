@@ -51,7 +51,7 @@ const DescriptionScreen = () => {
         {/* Botón Next */}
         <Pressable
           className="w-full py-3 rounded-lg items-center bg-black"
-          onPress={() => router.push("/description")}
+          onPress={() => router.push("/userName")}
           disabled={bio.length === 0}
         >
           <Text className="text-white font-semibold text-lg">Next</Text>
