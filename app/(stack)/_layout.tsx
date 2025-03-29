@@ -75,6 +75,13 @@ const StackLayout = () => {
       />
 
       <Stack.Screen
+        name='enterYourPassword/index'
+        options={{
+          title: '',
+        }}
+      />
+
+      <Stack.Screen
         name='findYourTwitterAccount/index'
         options={{
           title: '',

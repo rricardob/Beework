@@ -45,7 +45,7 @@ const LoginScreen = () => {
             onChangeText={(text) => handleInputChange("name", text)}
           />
           {formData.name.trim() !== "" && (
-            <Ionicons name="checkmark-circle" size={24} color="black" />
+            <Ionicons name="arrow-forward-circle-outline" size={24} color="gray" />
           )}
         </View>
 
@@ -65,7 +65,7 @@ const LoginScreen = () => {
           className={`py-3 px-6 text-right rounded-lg text-base ${isFormValid() ? "bg-black" : "bg-gray-400"
             }`}
           onPress={() => {
-            router.push("/(stack)/customizeCreateAccount");
+            router.push("/(stack)/enterYourPassword");
             console.log(formData);
           }}
           disabled={!isFormValid()}
