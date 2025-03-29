@@ -67,12 +67,9 @@ const StackLayout = () => {
         }}
       />
 
-      <Stack.Screen
-        name='description/index'
-        options={{
-          title: '',
-        }}
-      />
+
+
+
 
       <Stack.Screen
         name='findYourTwitterAccount/index'
@@ -81,6 +78,17 @@ const StackLayout = () => {
         }}
       />
 
+
+
+
+
+
+      <Stack.Screen
+        name='description/index'
+        options={{
+          title: '',
+        }}
+      />
     </Stack>
   )
 }
