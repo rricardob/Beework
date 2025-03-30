@@ -29,6 +29,7 @@ const FindYourTwitterAccount = () => {
         <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : undefined}
             className="flex-1 bg-white"
+            keyboardVerticalOffset={100}
         >
 
             <View className="flex-1 justify-between p-4">
