@@ -29,6 +29,8 @@ const StackLayout = () => {
         name='createAccount/index'
         options={{
           title: '',
+          headerBackImageSource: require("../../assets/images/react-logo.png"),
+          headerTintColor: 'black',
         }}
       />
 
