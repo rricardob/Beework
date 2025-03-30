@@ -108,7 +108,6 @@ const StackLayout = () => {
           title: '',
         }}
       />
-
       <Stack.Screen
         name='contacts/index'
         options={{
