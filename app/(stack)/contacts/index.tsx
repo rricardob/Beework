@@ -23,7 +23,7 @@ const ContactsScreen = () => {
       {/* Botón "Continue" */}
       <Pressable
         className="w-full py-3 rounded-lg items-center bg-black"
-        onPress={() => router.push("/contacts")}
+        onPress={() => router.push("/interests")}
       >
         <Text className="text-white font-semibold text-lg">Continue</Text>
       </Pressable>

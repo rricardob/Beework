@@ -131,6 +131,13 @@ const StackLayout = () => {
         }}
       />
 
+      <Stack.Screen
+        name='interests/index'
+        options={{
+          title: '',
+        }}
+      />
+
     </Stack>
   )
 }
