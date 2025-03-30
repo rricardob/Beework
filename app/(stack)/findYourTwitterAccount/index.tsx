@@ -27,7 +27,7 @@ const FindYourTwitterAccount = () => {
 
     return (
         <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            behavior={Platform.OS === 'ios' ? 'padding' : undefined}
             className="flex-1 bg-white"
         >
 
@@ -57,7 +57,7 @@ const FindYourTwitterAccount = () => {
                 </View>
 
                 {/* Contenedor del botón */}
-                <View className="justify-end items-end mb-40 mr-4">
+                <View className="justify-end items-end mr-4">
                     <Pressable
                         className={`py-3 px-6 rounded-lg text-base ${isFormValid() ? "bg-black" : "bg-gray-400"
                             }`}

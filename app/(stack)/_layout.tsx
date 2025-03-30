@@ -67,8 +67,19 @@ const StackLayout = () => {
         }}
       />
 
+
+
+
+
       <Stack.Screen
         name='login/index'
+        options={{
+          title: '',
+        }}
+      />
+
+      <Stack.Screen
+        name='enterYourPassword/index'
         options={{
           title: '',
         }}
@@ -82,12 +93,25 @@ const StackLayout = () => {
       />
 
       <Stack.Screen
-        name='chooseResetPassword/index'
+        name='userName/index'
         options={{
           title: '',
         }}
       />
 
+      <Stack.Screen
+        name='allowNotification/index'
+        options={{
+          title: '',
+        }}
+      />
+
+      <Stack.Screen
+        name='chooseResetPassword/index'
+        options={{
+          title: '',
+        }}
+      />
     </Stack>
   )
 }
