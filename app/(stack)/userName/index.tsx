@@ -78,7 +78,7 @@ const UserNameScreen = () => {
           className={`w-full py-3 rounded-lg items-center ${username.length >= MIN_USERNAME_LENGTH ? "bg-black" : "bg-gray-400"
             }`}
           disabled={username.length < MIN_USERNAME_LENGTH}
-          onPress={() => router.push("/userName")}
+          onPress={() => router.push("/allowNotification")}
         >
           <Text className="text-white font-semibold text-lg">Next</Text>
         </Pressable>

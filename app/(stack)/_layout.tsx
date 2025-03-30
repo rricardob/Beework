@@ -98,6 +98,13 @@ const StackLayout = () => {
           title: '',
         }}
       />
+
+      <Stack.Screen
+        name='allowNotification/index'
+        options={{
+          title: '',
+        }}
+      />
     </Stack>
   )
 }
