@@ -67,10 +67,6 @@ const StackLayout = () => {
         }}
       />
 
-
-
-
-
       <Stack.Screen
         name='login/index'
         options={{
@@ -101,6 +97,20 @@ const StackLayout = () => {
 
       <Stack.Screen
         name='allowNotification/index'
+        options={{
+          title: '',
+        }}
+      />
+
+      <Stack.Screen
+        name='description/index'
+        options={{
+          title: '',
+        }}
+      />
+
+      <Stack.Screen
+        name='contacts/index'
         options={{
           title: '',
         }}
