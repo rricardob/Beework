@@ -29,6 +29,7 @@ const StackLayout = () => {
         name='createAccount/index'
         options={{
           title: '',
+          headerBackImageSource: require("../../assets/images/back-arrow.png"),
         }}
       />
 
