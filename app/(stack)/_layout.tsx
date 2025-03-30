@@ -105,6 +105,13 @@ const StackLayout = () => {
           title: '',
         }}
       />
+
+      <Stack.Screen
+        name='chooseResetPassword/index'
+        options={{
+          title: '',
+        }}
+      />
     </Stack>
   )
 }
