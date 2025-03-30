@@ -39,7 +39,7 @@ const AllowNotificationScreen = () => {
       {/* Botón "Next" */}
       <Pressable
         className="w-full py-3 rounded-lg items-center bg-black mt-3"
-        onPress={() => router.push("/allowNotification")}
+        onPress={() => router.push("/contacts")}
       >
         <Text className="text-white font-semibold text-lg">Next</Text>
       </Pressable>
