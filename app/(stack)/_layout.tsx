@@ -124,7 +124,12 @@ const StackLayout = () => {
         }}
       />
 
-
+      <Stack.Screen
+        name='checkYourPhoneCode/index'
+        options={{
+          title: '',
+        }}
+      />
 
     </Stack>
   )
