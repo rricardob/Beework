@@ -62,7 +62,7 @@ const FindYourTwitterAccount = () => {
                         className={`py-3 px-6 rounded-lg text-base ${isFormValid() ? "bg-black" : "bg-gray-400"
                             }`}
                         onPress={() => {
-                            router.push("/(stack)/customizeCreateAccount");
+                            router.push("/(stack)/chooseResetPassword");
                         }}
                         disabled={!isFormValid()}
                     >
