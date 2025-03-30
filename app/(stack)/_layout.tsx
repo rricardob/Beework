@@ -29,7 +29,8 @@ const StackLayout = () => {
         name='createAccount/index'
         options={{
           title: '',
-          headerBackImageSource: require("../../assets/images/back-arrow.png"),
+          headerBackImageSource: require("../../assets/images/react-logo.png"),
+          headerTintColor: 'black',
         }}
       />
 
@@ -133,6 +134,13 @@ const StackLayout = () => {
 
       <Stack.Screen
         name='interests/index'
+        options={{
+          title: '',
+        }}
+      />
+
+      <Stack.Screen
+        name='ressetingPassword/index'
         options={{
           title: '',
         }}
