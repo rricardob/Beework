@@ -96,7 +96,7 @@ const InterestsScreen = () => {
             className={`py-3 px-6 rounded-lg ${selectedCategories.length >= 3 ? "bg-black" : "bg-gray-400"
               }`}
             disabled={selectedCategories.length < 3}
-            onPress={() => router.push("/interests")}
+            onPress={() => router.push("/follow")}
           >
             <Text className="text-white font-poppins-bold text-lg">Next</Text>
           </Pressable>

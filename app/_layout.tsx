@@ -1,10 +1,9 @@
-import { View, Text } from 'react-native'
+
 import { useFonts } from 'expo-font'
 import { Slot, SplashScreen } from 'expo-router'
 
 import '../global.css'
 import { useEffect } from 'react'
-import InterestsScreen from './(stack)/interests'
 
 
 const RootLayout = () => {
