@@ -153,6 +153,14 @@ const StackLayout = () => {
         }}
       />
 
+
+      <Stack.Screen
+        name='follow/index'
+        options={{
+          title: '',
+        }}
+      />
+
     </Stack>
   )
 }
