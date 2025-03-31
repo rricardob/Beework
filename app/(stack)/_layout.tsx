@@ -146,6 +146,13 @@ const StackLayout = () => {
         }}
       />
 
+      <Stack.Screen
+        name='reasons/index'
+        options={{
+          title: '',
+        }}
+      />
+
     </Stack>
   )
 }
