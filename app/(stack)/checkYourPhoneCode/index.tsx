@@ -34,7 +34,7 @@ const CheckYourPhoneCode = () => {
     // Función para manejar la navegación cuando se presiona el ícono
     const handleIconPress = () => {
         if (isCodeValid()) {
-            router.push("/(stack)/chooseResetPassword");
+            router.push("/(stack)/ressettingPassword");
         }
     };
 

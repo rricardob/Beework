@@ -29,7 +29,8 @@ const StackLayout = () => {
         name='createAccount/index'
         options={{
           title: '',
-          headerBackImageSource: require("../../assets/images/back-arrow.png"),
+          headerBackImageSource: require("../../assets/images/react-logo.png"),
+          headerTintColor: 'black',
         }}
       />
 
@@ -137,6 +138,21 @@ const StackLayout = () => {
           title: '',
         }}
       />
+
+      <Stack.Screen
+        name='ressettingPassword/index'
+        options={{
+          title: '',
+        }}
+      />
+
+      <Stack.Screen
+        name='reasons/index'
+        options={{
+          title: '',
+        }}
+      />
+
 
       <Stack.Screen
         name='follow/index'
