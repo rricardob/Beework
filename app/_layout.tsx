@@ -4,7 +4,7 @@ import { Slot, SplashScreen } from 'expo-router'
 
 import '../global.css'
 import { useEffect } from 'react'
-import InterestsScreen from './(stack)/interests'
+import FollowScreen from './(stack)/follow'
 
 
 const RootLayout = () => {
@@ -25,7 +25,8 @@ const RootLayout = () => {
   if (!fontsLoaded && !error) return null;
 
 
-  return <Slot />
+  // return <Slot />
+  return <FollowScreen />
 }
 
 export default RootLayout
