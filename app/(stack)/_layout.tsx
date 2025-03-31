@@ -153,6 +153,13 @@ const StackLayout = () => {
         }}
       />
 
+      <Stack.Screen
+        name='passwordChanged/index'
+        options={{
+          title: '',
+        }}
+      />
+
     </Stack>
   )
 }
