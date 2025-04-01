@@ -14,12 +14,14 @@ const EnterYourPasswordScreen = () => {
   const [showPassword, setShowPassword] = useState(false);
 
 
-  const { userName, setUserName } = useAuth();
+  const { userName, email } = useAuth();
 
-  useEffect(() => {
-    // Simulación de cambio de nombre de usuario
-    setUserName('Juan');
-  }, [setUserName]);
+  console.log("Valores en EnterYourPasswordScreen -> userName:", userName, "email:", email);
+
+  // useEffect(() => {
+  //   // Simulación de cambio de nombre de usuario
+  //   setUserName('Juan');
+  // }, [setUserName]);
 
 
   const handleLogin = async () => {
@@ -39,7 +41,9 @@ const EnterYourPasswordScreen = () => {
         <Text className="text-2xl mb-4 font-poppins-bold">Enter your password</Text>
 
         <View className="w-full flex-row justify-between border border-gray-300 rounded-md px-4 py-3 mb-4">
-          <Text className="text-base font-poppins-regular">{userName}</Text>
+          <Text className="text-base font-poppins-regular">
+            {userName || email} {/* Muestra el username si existe, sino el email */}
+          </Text>
         </View>
 
         <TextInput
