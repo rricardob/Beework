@@ -78,7 +78,6 @@ const PasswordChanged = () => {
           <Pressable
             className={`py-3 px-6 rounded-lg text-base bg-black`}
             onPress={() => {
-              router.push("/(stack)/reasons");
             }}
           >
             <Text className="text-white font-semibold text-[18px] text-center">

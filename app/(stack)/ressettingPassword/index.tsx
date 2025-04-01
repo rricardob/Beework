@@ -18,9 +18,14 @@ const RessetingPassword = () => {
   });
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setIsConfirmPasswordVisible(!isConfirmPasswordVisible);
   };
 
   // Función para actualizar los campos del formulario
@@ -98,15 +103,15 @@ const RessetingPassword = () => {
               className="flex-1 text-base"
               placeholder="Enter your password one more time"
               placeholderTextColor="#9CA3AF"
-              value={formData.password}
-              secureTextEntry={!isPasswordVisible}
-              onChangeText={(text) => handleInputChange("password", text)}
+              value={formData.confirmPassword}
+              secureTextEntry={!isConfirmPasswordVisible}
+              onChangeText={(text) => handleInputChange("confirmPassword", text)}
             />
             <TouchableOpacity
-              onPress={togglePasswordVisibility}
+              onPress={toggleConfirmPasswordVisibility}
             >
               <Ionicons
-                name={isPasswordVisible ? 'eye-off' : 'eye'}
+                name={isConfirmPasswordVisible ? 'eye-off' : 'eye'}
                 size={28}
                 color={"gray"}
               />
