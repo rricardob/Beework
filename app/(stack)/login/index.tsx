@@ -56,7 +56,7 @@ const LoginScreen = () => {
 
       <Pressable
       className="text-left"
-        onPress={() => router.push('/(stack)/login')}
+        onPress={() => router.push('/(stack)/findYourTwitterAccount')}
       >
         <Text className="fml-2 text-black">Forgot password?</Text>
       </Pressable>

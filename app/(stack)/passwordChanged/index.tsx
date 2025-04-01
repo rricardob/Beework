@@ -10,7 +10,7 @@ interface FormData {
   confirmPassword: string;
 }
 
-const RessetingPassword = () => {
+const PasswordChanged = () => {
   // Estado para almacenar los datos del formulario
   const [formData, setFormData] = useState<FormData>({
     password: "",
@@ -18,14 +18,9 @@ const RessetingPassword = () => {
   });
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
-  };
-
-  const toggleConfirmPasswordVisibility = () => {
-    setIsConfirmPasswordVisible(!isConfirmPasswordVisible);
   };
 
   // Función para actualizar los campos del formulario
@@ -65,7 +60,7 @@ const RessetingPassword = () => {
           </View>
 
           {/* Título */}
-          <Text className="text-3xl mb-6 font-poppins-bold">Reset your password</Text>
+          <Text className="text-3xl mb-6 font-poppins-bold">You’re all set. You’ve successfully changed your password.</Text>
 
           {/* Descripción */}
           <Text className="text-base text-gray-600 mb-8 font-poppins">
@@ -76,48 +71,6 @@ const RessetingPassword = () => {
             <Text className="text-blue-500">Learn more</Text>
           </Text>
 
-          {/* Campo de nueva contraseña */}
-          <View className="w-full flex-row items-center border border-gray-300 rounded-md px-4 py-3 mb-4">
-            <TextInput
-              className="flex-1 text-base"
-              placeholder="Enter your code"
-              placeholderTextColor="#9CA3AF"
-              value={formData.password}
-              secureTextEntry={!isPasswordVisible}
-              onChangeText={(text) => handleInputChange("password", text)}
-            />
-            <TouchableOpacity
-              onPress={togglePasswordVisibility}
-            >
-              <Ionicons
-                name={isPasswordVisible ? 'eye-off' : 'eye'}
-                size={28}
-                color={"gray"}
-              />
-            </TouchableOpacity>
-          </View>
-
-          {/* Campo de confirmación de contraseña */}
-          <View className="w-full flex-row items-center border border-gray-300 rounded-md px-4 py-3 mb-4">
-            <TextInput
-              className="flex-1 text-base"
-              placeholder="Enter your password one more time"
-              placeholderTextColor="#9CA3AF"
-              value={formData.confirmPassword}
-              secureTextEntry={!isConfirmPasswordVisible}
-              onChangeText={(text) => handleInputChange("confirmPassword", text)}
-            />
-            <TouchableOpacity
-              onPress={toggleConfirmPasswordVisibility}
-            >
-              <Ionicons
-                name={isConfirmPasswordVisible ? 'eye-off' : 'eye'}
-                size={28}
-                color={"gray"}
-              />
-            </TouchableOpacity>
-          </View>
-
         </View>
 
         {/* Contenedor del botón */}
@@ -125,11 +78,10 @@ const RessetingPassword = () => {
           <Pressable
             className={`py-3 px-6 rounded-lg text-base bg-black`}
             onPress={() => {
-              router.push("/(stack)/reasons");
             }}
           >
             <Text className="text-white font-semibold text-[18px] text-center">
-              Reset password
+              Continue to Twitter
             </Text>
           </Pressable>
         </View>
@@ -139,4 +91,4 @@ const RessetingPassword = () => {
   );
 };
 
-export default RessetingPassword;
+export default PasswordChanged;
