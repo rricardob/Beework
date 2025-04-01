@@ -10,12 +10,19 @@ const authRepository = new AuthRepositoryImpl();
 const saveUserNameUseCase = new SaveUserNameUseCase(authRepository);
 
 const LoginScreen = () => {
-  const { setUserName } = useAuth();
-  const [name, setName] = useState("");
+  const { setUserName, setEmail } = useAuth();
+  const [inputValue, setInputValue] = useState("");
 
   const handleNext = () => {
-    saveUserNameUseCase.execute(name);
-    setUserName(name);
+    if (inputValue.includes("@")) {
+      setEmail(inputValue);
+      setUserName(''); // Borra el nombre de usuario si se ingresa un email
+    } else {
+      setUserName(inputValue);
+      setEmail(''); // Borra el email si se ingresa un nombre de usuario
+    }
+
+    saveUserNameUseCase.execute(inputValue);
     router.push("/(stack)/enterYourPassword");
   };
 
@@ -31,10 +38,10 @@ const LoginScreen = () => {
           <TextInput
             className="flex-1 text-base"
             placeholder="Phone, email or @username"
-            value={name}
-            onChangeText={setName}
+            value={inputValue}
+            onChangeText={setInputValue}
           />
-          {name.trim() !== "" && (
+          {inputValue.trim() !== "" && (
             <Ionicons name="arrow-forward-circle-outline" size={24} color="gray" />
           )}
         </View>
@@ -46,9 +53,9 @@ const LoginScreen = () => {
         </Pressable>
 
         <Pressable
-          className={`py-3 px-6 text-right rounded-lg text-base ${name.trim() !== "" ? "bg-black" : "bg-gray-400"}`}
+          className={`py-3 px-6 text-right rounded-lg text-base ${inputValue.trim() !== "" ? "bg-black" : "bg-gray-400"}`}
           onPress={handleNext}
-          disabled={name.trim() === ""}
+          disabled={inputValue.trim() === ""}
         >
           <Text className="text-white font-semibold text-[18px] text-center">Next</Text>
         </Pressable>
