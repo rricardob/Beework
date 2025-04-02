@@ -13,10 +13,18 @@ export class AuthRepositoryImpl implements AuthRepository {
 
   async login(email: string, password: string): Promise<string> {
     try {
-      const response = await fetch("https://api.ejemplo.com/login", {
+      const response = await fetch('https://dummyjson.com/auth/login', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({
+          // email,
+          // password
+
+          username: 'emilys',
+          password: 'emilyspass',
+
+        }),
+        credentials: "include",
       });
 
       if (!response.ok) {
