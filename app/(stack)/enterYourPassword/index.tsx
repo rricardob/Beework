@@ -18,7 +18,7 @@ const EnterYourPasswordScreen = () => {
     try {
       const token = await loginUserUseCase.execute(userName!, values.password);
       console.log("Token recibido:", token);
-      router.push("/profilePicture");
+      router.push("../screensNavigation");
     } catch (error) {
       console.error("Error al iniciar sesión", error);
     }
