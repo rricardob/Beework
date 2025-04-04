@@ -1,36 +1,23 @@
 import { useState } from "react";
 import { View, Text, TextInput, Pressable } from "react-native";
-import DateTimePicker from "@react-native-community/datetimepicker";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { router } from "expo-router";
-
-// Definimos la interfaz del formulario
-interface FormData {
-  name: string;
-  contact: string;
-  birthdate: Date;
-}
+import DateTimePicker from "@react-native-community/datetimepicker";
+import useCreateAccountStore from "@/src/modules/auth/context/CreateAccountStore";
 
 const CreateAccountScreen = () => {
-  // Estado para almacenar los datos del formulario
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    contact: "",
-    birthdate: new Date(),
-  });
+  // Obtenemos los datos y funciones del store
+  const { name, lastName, email, setName, setLastName, setEmail } = useCreateAccountStore();
 
+  // Estado para la fecha de nacimiento
+  const [birthdate, setBirthdate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
 
-  // Función para actualizar los campos del formulario
-  const handleInputChange = (field: keyof FormData, value: string | Date) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
-
   // Función para manejar el cambio de fecha
-  const handleDateChange = (_event: any, selectedDate?: Date) => {
+  const handleDateChange = (_event: unknown, selectedDate?: Date): void => {
     setShowDatePicker(false);
     if (selectedDate) {
-      handleInputChange("birthdate", selectedDate);
+      setBirthdate(selectedDate);
     }
   };
 
@@ -44,8 +31,8 @@ const CreateAccountScreen = () => {
   };
 
   // Verifica si todos los campos están llenos
-  const isFormValid = (): boolean => {
-    return formData.name.trim() !== "" && formData.contact.trim() !== "";
+  const isFormValid = () => {
+    return (name?.trim() ?? "") !== "" && (email?.trim() ?? "") !== "";
   };
 
   return (
@@ -56,21 +43,27 @@ const CreateAccountScreen = () => {
         <View className="w-12 h-12 bg-gray-300 rounded-full mb-6" />
 
         {/* Título */}
-        <Text className="text-2xl mb-4 font-poppins-bold">
-          Crea tu cuenta
-        </Text>
+        <Text className="text-2xl mb-4 font-poppins-bold">Crea tu cuenta</Text>
 
         {/* Inputs */}
         <View className="w-full flex-row items-center border border-gray-300 rounded-md px-4 py-3 mb-4">
           <TextInput
             className="flex-1 text-base"
             placeholder="Nombre"
-            value={formData.name}
-            onChangeText={(text) => handleInputChange("name", text)}
+            value={name ?? ""}
+            onChangeText={setName}
           />
-          {formData.name.trim() !== "" && (
-            <Ionicons name="checkmark-circle" size={24} color="black" />
-          )}
+          {name?.trim() !== "" && <Ionicons name="checkmark-circle" size={24} color="black" />}
+        </View>
+
+        <View className="w-full flex-row items-center border border-gray-300 rounded-md px-4 py-3 mb-4">
+          <TextInput
+            className="flex-1 text-base"
+            placeholder="Apellidos"
+            value={lastName ?? ""}
+            onChangeText={setLastName}
+          />
+          {lastName?.trim() !== "" && <Ionicons name="checkmark-circle" size={24} color="black" />}
         </View>
 
         <View className="w-full flex-row items-center border border-gray-300 rounded-md px-4 py-3 mb-4">
@@ -78,29 +71,27 @@ const CreateAccountScreen = () => {
             className="flex-1 text-base"
             placeholder="Número de teléfono o correo electrónico"
             keyboardType="email-address"
-            value={formData.contact}
-            onChangeText={(text) => handleInputChange("contact", text)}
+            value={email ?? ""}
+            onChangeText={setEmail}
           />
-          {formData.contact.trim() !== "" && (
-            <Ionicons name="checkmark-circle" size={24} color="black" />
-          )}
+          {email?.trim() !== "" && <Ionicons name="checkmark-circle" size={24} color="black" />}
         </View>
 
         {/* Input de fecha de nacimiento */}
         <Pressable
-          className="w-full flex-row justify-between border border-gray-300 rounded-lg px-4 py-3 mb-4 text-base"
+          className="w-full flex-row justify-between border border-gray-300 rounded-lg px-4 py-3 mb-4"
           onPress={() => setShowDatePicker(true)}
         >
-          <Text className={formData.birthdate ? "text-black" : "text-gray-400"}>
-            {formatDate(formData.birthdate)}
+          <Text className={birthdate ? "text-black" : "text-gray-400"}>
+            {formatDate(birthdate)}
           </Text>
-          <Ionicons name="checkmark-circle" size={24} color="black" />
+          <Ionicons name="calendar" size={24} color="black" />
         </Pressable>
 
         {/* DateTimePicker */}
         {showDatePicker && (
           <DateTimePicker
-            value={formData.birthdate}
+            value={birthdate}
             mode="date"
             display="spinner"
             onChange={handleDateChange}
@@ -111,17 +102,14 @@ const CreateAccountScreen = () => {
       {/* Contenedor del botón */}
       <View className="w-full">
         <Pressable
-          className={`py-3 px-6 rounded-lg text-base ${isFormValid() ? "bg-black" : "bg-gray-400"
-            }`}
+          className={`py-3 px-6 rounded-lg text-base ${isFormValid() ? "bg-black" : "bg-gray-400"}`}
           onPress={() => {
             router.push("/(stack)/customizeCreateAccount");
-            console.log(formData);
+            console.log({ name, lastName, email, birthdate: formatDate(birthdate) });
           }}
           disabled={!isFormValid()}
         >
-          <Text className="text-white font-semibold text-[18px] text-center">
-            Next
-          </Text>
+          <Text className="text-white font-semibold text-[18px] text-center">Next</Text>
         </Pressable>
       </View>
     </View>
