@@ -1,72 +1,70 @@
 import { useState } from "react";
-import { View, Text, TextInput, Pressable } from "react-native";
+import { View, Text, TextInput, Pressable, KeyboardAvoidingView, Platform } from "react-native";
 import { router } from "expo-router";
+import useCreateAccountStore from "@/src/modules/auth/context/CreateAccountStore";
 
 const CodeVerificationScreen = () => {
-  const [code, setCode] = useState(Array(6).fill(""));
+  const [validationCode, setValidationCode] = useState("");
 
-  // Manejar la entrada de código
-  const handleChange = (text: string, index: number) => {
-    if (/^\d?$/.test(text)) {
-      const newCode = [...code];
-      newCode[index] = text;
-      setCode(newCode);
-    }
+  const { email, invitationToken } = useCreateAccountStore();
+
+  const handleChange = (text: string) => {
+    setValidationCode(text);
   };
 
-  // Verificar si todos los cuadros tienen un número
-  const isCodeComplete = code.every((num) => num !== "");
+  const handleNext = () => {
+    // verificar si el codigo de invitacion es el mismo que tengo en mi store
+    if (validationCode !== invitationToken) {
+      alert("El código de invitación no es correcto");
+      return;
+    }
+
+    // Navega a la siguiente pantalla
+    router.push("/createPassword");
+  };
 
   return (
-    <View className="flex-1 justify-between p-4 font-poppins-regular">
-      {/* Contenedor Superior */}
-      <View className="flex-grow items-center">
-        {/* Avatar */}
-        <View className="w-16 h-16 bg-gray-300 rounded-full mb-6" />
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      className="flex-1 bg-white"
+      keyboardVerticalOffset={100}
+    >
+      <View className="flex-1 justify-between p-4 font-poppins-regular">
+        <View className="flex-grow items-center">
+          <View className="w-16 h-16 bg-gray-300 rounded-full mb-6" />
 
-        {/* Título */}
-        <Text className="text-2xl mb-2 font-poppins-bold text-center">
-          We sent you a code
-        </Text>
+          <Text className="text-2xl mb-2 font-poppins-bold text-center">
+            We sent you a code
+          </Text>
 
-        {/* Subtítulo */}
-        <Text className="text-base text-black-600 mb-6 mt-8 font-poppins-regular text-center">
-          Enter it to verify jon.doe@gmail.com
-        </Text>
+          <Text className="text-base text-black-600 mb-6 mt-8 font-poppins-regular text-center">
+            Ingresa el código {email}
+          </Text>
 
-        {/* Código de verificación */}
-        <View className="flex-row justify-between mb-6 w-full">
-          {Array.from({ length: 6 }).map((_, index) => (
+          <View className="flex-row justify-between mb-6 w-full">
             <TextInput
-              key={index}
-              className="w-14 h-24 border border-gray-300 text-center text-6xl font-poppins-light rounded-md p-0"
-              keyboardType="numeric"
-              maxLength={1}
-              value={code[index]}
-              onChangeText={(text) => handleChange(text, index)}
+              className="w-full h-14 border border-gray-300 text-center text-xl tracking-[3px] font-poppins-regular rounded-md p-0"
+              value={validationCode}
+              onChangeText={handleChange}
             />
-          ))}
+          </View>
+        </View>
+
+        <View className="mb-6">
+          <Text className="text-base text-black-500 font-poppins-regular text-left mb-4">
+            Didn’t receive mail?
+          </Text>
+
+          <Pressable
+            className={`w-full py-3 rounded-lg items-center bg-black`}
+            onPress={handleNext}
+          >
+            <Text className="text-white font-semibold text-lg">Next</Text>
+          </Pressable>
         </View>
       </View>
 
-      {/* Contenedor Inferior */}
-      <View className="mb-6">
-        {/* Reenviar código */}
-        <Text className="text-base text-black-500 font-poppins-regular text-left mb-4">
-          Didn’t receive mail?
-        </Text>
-
-        {/* Botón Next */}
-        <Pressable
-          className={`w-full py-3 rounded-lg items-center ${isCodeComplete ? "bg-black" : "bg-gray-400"
-            }`}
-          disabled={!isCodeComplete}
-          onPress={() => router.push("/createPassword")}
-        >
-          <Text className="text-white font-semibold text-lg">Next</Text>
-        </Pressable>
-      </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

@@ -1,14 +1,53 @@
 import { useState } from "react";
-import { View, Text, TextInput, Pressable } from "react-native";
+import { View, Text, TextInput, Pressable, Alert, ActivityIndicator } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { router } from "expo-router";
+import useCreateAccountStore from "@/src/modules/auth/context/CreateAccountStore";
 
 const CreatePasswordScreen = () => {
-  const [password, setPassword] = useState("");
+  const [temporalPassword, setTemporalPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { invitationToken, setPassword, email } = useCreateAccountStore();
 
   // Verifica si la contraseña tiene al menos 8 caracteres
-  const isPasswordValid = password.length >= 8;
+  const isPasswordValid = temporalPassword.length >= 8;
+
+  const handleSubmit = async () => {
+    if (!isPasswordValid) return;
+
+    try {
+      setLoading(true);
+      setPassword(temporalPassword);
+
+      const response = await fetch("https://beework.kuskaya.co/api/auth/sign-up", {
+        method: "POST",
+        headers: {
+          Accept: "*/*",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password: temporalPassword,
+          invitationToken,
+          recaptchaToken: "", // puedes agregarlo si lo usas más adelante
+        }),
+      });
+
+      if (response.ok) {
+        router.push("/profilePicture");
+      } else {
+        const errorData = await response.json();
+        console.error("Error:", errorData);
+        Alert.alert("Oops", errorData.message || "Algo salió mal al crear la cuenta.");
+      }
+    } catch (error) {
+      console.error("Error en el fetch:", error);
+      Alert.alert("Error", "Hubo un problema de red o servidor.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <View className="flex-1 justify-between p-4 font-poppins-regular">
@@ -33,8 +72,8 @@ const CreatePasswordScreen = () => {
             className="flex-1 text-base font-poppins-regular"
             placeholder="Enter password"
             secureTextEntry={!showPassword}
-            value={password}
-            onChangeText={setPassword}
+            value={temporalPassword}
+            onChangeText={setTemporalPassword}
           />
           <Ionicons name="arrow-forward-circle-outline" size={24} color="gray" />
         </View>
@@ -50,13 +89,17 @@ const CreatePasswordScreen = () => {
 
       {/* Contenedor inferior */}
       <View className="mb-6">
-        {/* Botón Next */}
         <Pressable
-          className={`w-full py-3 rounded-lg items-center ${isPasswordValid ? "bg-black" : "bg-gray-400"}`}
-          disabled={!isPasswordValid}
-          onPress={() => router.push("/profilePicture")}
+          className={`w-full py-3 rounded-lg items-center ${isPasswordValid ? "bg-black" : "bg-gray-400"
+            }`}
+          disabled={!isPasswordValid || loading}
+          onPress={handleSubmit}
         >
-          <Text className="text-white font-semibold text-lg">Next</Text>
+          {loading ? (
+            <ActivityIndicator color="#fff" />
+          ) : (
+            <Text className="text-white font-semibold text-lg">Next</Text>
+          )}
         </Pressable>
       </View>
     </View>
