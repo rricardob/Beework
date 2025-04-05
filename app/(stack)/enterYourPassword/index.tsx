@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Pressable } from "react-native";
+import { View, Text, TextInput, Pressable, Alert } from "react-native";
 import { router } from "expo-router";
 import { useAuth } from "../../../src/modules/auth/context/AuthStore";
 import { LoginUserUseCase } from "../../../src/modules/auth/usecases/LoginUserUseCase";
@@ -21,6 +21,7 @@ const EnterYourPasswordScreen = () => {
       router.push("../screensNavigation");
     } catch (error) {
       console.error("Error al iniciar sesión", error);
+      Alert.alert("BeeWork", "Credenciales no validas");
     }
   };
 
