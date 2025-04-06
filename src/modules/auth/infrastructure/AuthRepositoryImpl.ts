@@ -14,17 +14,12 @@ export class AuthRepositoryImpl implements AuthRepository {
 
   async login(email: string, password: string): Promise<string> {
     try {
-
-
-          const email = 'rbueno@nutechcorp.com';
-      const password = 'Ric@rdo2025' ;
+      
       const requestData = { email, password };
       const response = await axios.post(
           'https://beework.kuskaya.co/api/auth/sign-in',
           requestData
       );
-
-
 
       if (response.data === true && response.headers['set-cookie']) {
         const cookie = response.headers['set-cookie'][0];
@@ -33,17 +28,46 @@ export class AuthRepositoryImpl implements AuthRepository {
         );
         const sessionData = JSON.parse(sessionCookie);
         const token = sessionData.token;
-        console.log("token",token);
+        return token;
       } else {
-        console.log('Login Failed: Invalid email or password');
+        throw new Error("Login Failed: Invalid email or password");
       }
     } catch (error) {
-      console.error('Request Error:', error);
-
+      throw new Error("Credenciales incorrectas");
     }
-
-
-
-     return "";
   }
+
+  async callMe(token: string): Promise<void> {
+    try {
+
+      const userResponse = await axios.get(
+        'https://beework.kuskaya.co/api/auth/me',
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      const membershipId = userResponse.data.memberships[0].id;
+      const firstName = userResponse.data.memberships[0].firstName;
+      var profilePicture = '/images/defaultProfilePicture.png';
+      if (userResponse.data.memberships[0].avatars[0]) {
+        profilePicture = userResponse.data.memberships[0].avatars[0].downloadUrl;
+      }
+      const userRoles = userResponse.data.memberships[0].roles;
+      const role = userRoles.includes('driver')
+        ? 'driver'
+        : userRoles.includes('verifier')
+        ? 'verifier'
+        : '';
+
+        await AsyncStorage.setItem(
+          'userSession',
+          JSON.stringify({ token, membershipId, firstName, role, profilePicture })
+        );
+      
+    } catch (error) {
+      throw new Error("Credenciales incorrectas");
+    }
+  }
+
 }
