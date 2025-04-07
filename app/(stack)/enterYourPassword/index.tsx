@@ -1,13 +1,15 @@
-import { View, Text, TextInput, Pressable } from "react-native";
+import { View, Text, TextInput, Pressable, Alert } from "react-native";
 import { router } from "expo-router";
 import { useAuth } from "../../../src/modules/auth/context/AuthStore";
 import { LoginUserUseCase } from "../../../src/modules/auth/usecases/LoginUserUseCase";
+import { CallMeUseCase } from "../../../src/modules/auth/usecases/CallMeUseCase";
 import { AuthRepositoryImpl } from "../../../src/modules/auth/infrastructure/AuthRepositoryImpl";
 import { Formik } from "formik";
 import { passwordSchema } from "@/src/modules/auth/validation/passwordSchema";
 
 const authRepository = new AuthRepositoryImpl();
 const loginUserUseCase = new LoginUserUseCase(authRepository);
+const callMeUseCase = new CallMeUseCase(authRepository);
 
 const EnterYourPasswordScreen = () => {
   const { userName, email } = useAuth();
@@ -16,11 +18,11 @@ const EnterYourPasswordScreen = () => {
 
   const handleLogin = async (values: { password: string }) => {
     try {
-      const token = await loginUserUseCase.execute(userName!, values.password);
-      console.log("Token recibido:", token);
+      const token = await loginUserUseCase.execute(email!, values.password);
+      const role = await callMeUseCase.execute(token);
       router.push("../screensNavigation");
     } catch (error) {
-      console.error("Error al iniciar sesión", error);
+      Alert.alert("BeeWork", "Credenciales no validas");
     }
   };
 
