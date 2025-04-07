@@ -30,7 +30,7 @@ export class AuthRepositoryImpl implements AuthRepository {
         const token = sessionData.token;
         return token;
       } else {
-        throw new Error("Login Failed: Invalid email or password");
+        throw new Error("Credenciales incorrectas");
       }
     } catch (error) {
       throw new Error("Credenciales incorrectas");
