@@ -38,7 +38,8 @@
           "photosPermission": "Allow access to your photos for profile pictures."
         }
       ],
-      "expo-font"
+      "expo-font",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true
